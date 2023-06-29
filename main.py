@@ -78,7 +78,7 @@ async def jailbreak(event):
             DAN_JAILBREAK = False
             await event.respond('DAN Mode disabled | Режим DAN выключен')
     except IndexError:
-        await event.respond('TO enable a jailbreak you have to specify one. Available jailbreaks are: | Чтоюы включить джейлбрейк, вы должны указать его. Доступные джейлбрейки:\n\nDAN\ndisable')
+        await event.respond('TO enable a jailbreak you have to specify one. Available jailbreaks are: \nЧтоюы включить джейлбрейк, вы должны указать его. Доступные джейлбрейки:\n\nDAN\ndisable')
 
 @client.on(NewMessage(pattern="/newrole"))
 async def newrole(event):
