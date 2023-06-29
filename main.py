@@ -54,7 +54,7 @@ async def pls(event):
     pls = []
     for plugin in plugins_dict:
         pls.append(plugin)
-    await event.respond("Available plugins are:\n{}".format("\n".join(pls)))
+    await event.respond("Available plugins are: | Доступные плагины:\n{}".format("\n".join(pls)))
 
 @client.on(NewMessage(pattern='/plugins toggle'))
 async def pls_toggle(event):
@@ -64,7 +64,7 @@ async def pls_toggle(event):
         await event.respond("You need to set a wolframalpha app id in the .env file to use plugins.")
         PLUGINS = False
         return
-    await event.respond("Plugins enabled" if PLUGINS == True else "Plugins disabled")
+    await event.respond("Plugins enabled | Плагин включен" if PLUGINS == True else "Plugins disabled | Плагин выключен")
 
 @client.on(NewMessage(pattern='/jailbreak'))
 async def jailbreak(event):
@@ -73,12 +73,12 @@ async def jailbreak(event):
         if jailbreak == 'DAN':
             global DAN_JAILBREAK
             DAN_JAILBREAK = True
-            await event.respond('DAN Mode enabled')
+            await event.respond('DAN Mode enabled | Режим DAN включен')
         elif jailbreak == 'disable':
             DAN_JAILBREAK = False
-            await event.respond('DAN Mode disabled')
+            await event.respond('DAN Mode disabled | Режим DAN выключен')
     except IndexError:
-        await event.respond('TO enable a jailbreak you have to specify one. Available jailbreaks are:\n\nDAN\ndisable')
+        await event.respond('TO enable a jailbreak you have to specify one. Available jailbreaks are: | Чтоюы включить джейлбрейк, вы должны указать его. Доступные джейлбрейки:\n\nDAN\ndisable')
 
 @client.on(NewMessage(pattern="/newrole"))
 async def newrole(event):
@@ -89,19 +89,19 @@ async def newrole(event):
         role_name = event.text.split(" ")[1]
         role = event.text.split(" ", 2)[2]
     except IndexError:
-        await event.respond("You need to specify a role name and a role.")
+        await event.respond("You need to specify a role name and a role. | Вам нужно указать имя роли и информацию о роли.")
         return
     roles[role_name] = role
     with open("roles.json", "w") as f:
         f.write(json.dumps(roles))
-    await event.respond("Role added")
+    await event.respond("Role added | Роль добавлена")
 
 @client.on(NewMessage(pattern="/roles"))
 async def roles(event):
     with open("roles.json", "r") as f:
         roles = f.read()
     roles = json.loads(roles)
-    await event.respond("Available roles:\n{}".format("\n".join(roles.keys())))
+    await event.respond("Available roles: | Доступные роли:\n{}".format("\n".join(roles.keys())))
 
 @client.on(NewMessage(pattern="/role"))
 async def role(event):
@@ -109,20 +109,20 @@ async def role(event):
     try:
         loc_role = event.text.split(" ")[1]
     except IndexError:
-        await event.respond("You need to specify a role.")
+        await event.respond("You need to specify a role. | Вам нужно указать роль.")
         return
     if loc_role == "disable":
         ROLE = ""
-        await event.respond("Role disabled")
+        await event.respond("Role disabled | Роль отключена")
         return
     with open("roles.json", "r") as f:
         roles = f.read()
     roles = json.loads(roles)
     try:
         ROLE = roles[loc_role]
-        await event.respond("Role set")
+        await event.respond("Role set | набор ролей.")
     except KeyError:
-        await event.respond("Role not found")
+        await event.respond("Role not found | Роль не найдена")
 
 
 
@@ -146,7 +146,7 @@ async def handler(e):
     msg = await e.respond('Thinking... | Думаю...')
     system_prompt = ""
     if DAN_JAILBREAK == True and PLUGINS == True:
-        await msg.edit('You can\'t use both DAN and plugins at the same time.')
+        await msg.edit('You can\'t use both DAN and plugins at the same time. | Вы не можете использовать DAN и плагин одновременно.')
         return
     if DAN_JAILBREAK == True:
         system_prompt = DAN_PROMPT
@@ -162,7 +162,7 @@ async def handler(e):
             wf_client = wolframalpha.Client(app_id=wolframalpha_app_id)
             res = wf_client.query(query)
             if res["@success"] == False:
-                result = "No results"
+                result = "No results | Нет результатов"
             else:
                 result = next(res.results).text
             result = await AiAgent(plugins_second_question["wolframalpha"].replace("<input>", prompt).replace("<result>", result))
