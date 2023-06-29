@@ -43,7 +43,7 @@ async def AiAgent(prompt, system_prompt=""):
 
 @client.on(NewMessage(pattern='/start'))
 async def start(event):
-    await event.respond('Hey! Write something and I will answer you using the gpt-4 model or add me to a group and I will answer you when you mention me.')
+    await event.respond('🇺🇸 Hey! Write something and I will answer you using the gpt-4 model or add me to a group and I will answer you when you mention me.\n\n🇷🇺 Привет! Напишите что-нибудь, и я отвечу вам, используя модель gpt-4, или добавьте меня в группу, и я отвечу вам, когда вы упомянете меня')
 
 @client.on(NewMessage(pattern='/help'))
 async def help(event):
