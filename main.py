@@ -143,7 +143,7 @@ async def handler(e):
         if not e.text.startswith(f'@{my_username}'):
             return
         prompt = e.text.replace(f'@{my_username}', '')
-    msg = await e.respond('Thinking...')
+    msg = await e.respond('Thinking... | Думаю...')
     system_prompt = ""
     if DAN_JAILBREAK == True and PLUGINS == True:
         await msg.edit('You can\'t use both DAN and plugins at the same time.')
