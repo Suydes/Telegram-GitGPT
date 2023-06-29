@@ -43,11 +43,11 @@ async def AiAgent(prompt, system_prompt=""):
 
 @client.on(NewMessage(pattern='/start'))
 async def start(event):
-    await event.respond('🇺🇸 Hey! Write something and I will answer you using the gpt-4 model or add me to a group and I will answer you when you mention me.\n\n🇷🇺 Привет! Напишите что-нибудь, и я отвечу вам, используя модель gpt-4, или добавьте меня в группу, и я отвечу вам, когда вы упомянете меня')
+    await event.respond('🇺🇸 | Hey! Write something and I will answer you using the gpt-4 model or add me to a group and I will answer you when you mention me.\n\n🇷🇺 | Привет! Напишите что-нибудь, и я отвечу вам, используя модель gpt-4, или добавьте меня в группу, и я отвечу вам, когда вы упомянете меня')
 
 @client.on(NewMessage(pattern='/help'))
 async def help(event):
-    await event.respond('Hey! Write something and I will answer you using the gpt-4 model or add me to a group and I will answer you when you mention me.\nCommands:\n\n/jailbreak - list all jailbreaks\n\n/jailbreak [JAILBREAK NAME] - enable a jailbreak\n\n/plugins toggle - enable/disable plugins\n\n/plugins list - list all plugins\n\n/newrole <Role Name> <Role Info> - add a new role\n\n/roles - list all roles\n\n/role <Role Name> enable a role\n\n/role disable - disable roles')
+    await event.respond('🇺🇸 | Here, you can learn about what I can do / 🇷🇺 | Здесь вы можете узнать о том, что я могу сделать ..\nCommands: | Команды:\n\n/jailbreak - list all jailbreaks | список Джейлбрейков\n\n/jailbreak [JAILBREAK NAME] - enable a jailbreak | [НАЗВАНИЕ ДЖЕЙЛБРЕЙКА] - включить Джейлбрейк \n\n/plugins toggle - enable/disable plugins | переключить - включить/включить плагин\n\n/plugins list - list all plugins | список всех плагинов\n\n/newrole <Role Name> <Role Info> - add a new role | <Название Роли> <Информация Роли> - добавить новую роль \n\n/roles - list all roles | список всех ролей\n\n/role <Role Name> - enable a role | <Название Роли> - включить роль\n\n/role disable - disable roles | отключить роль')
 
 @client.on(NewMessage(pattern='/plugins list'))
 async def pls(event):
